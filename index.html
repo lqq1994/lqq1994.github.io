@@ -229,6 +229,170 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/React中数据管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/08/React中数据管理/" itemprop="url">React中数据管理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-08T21:17:52+08:00">
+                2019-11-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一、-原生React组件的数据传输管理："><a href="#一、-原生React组件的数据传输管理：" class="headerlink" title="一、 原生React组件的数据传输管理："></a>一、 原生React组件的数据传输管理：</h3><p>原生React组件之间的数据传输主要依赖于两个关键词：属性（props） 和状态（state）。每一个组件都是一个对象，props是对象的一个属性，组件对象可以通过props进行传递。React 的核心思想是组件化的思想，应用由组件搭建而成，而组件中最重要的概念是State（状态），State是一个组件的UI数据模型，是组件渲染时的数据依据。state与props的最大区别在于props是不可变的而state是可变的。具体内容后面会详细讲解。  </p>
+<p>原生React组件之间数据传递场景可以分为以下四种： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.组件内部的数据传输 </span><br><span class="line"></span><br><span class="line">2.“父组件”向“子组件”传值</span><br><span class="line"></span><br><span class="line">3.“子组件”向 “父组件”传值 </span><br><span class="line"></span><br><span class="line">4.“兄弟组件”之间的传值</span><br></pre></td></tr></table></figure>
+
+<h5 id="组件内部的数据传输"><a href="#组件内部的数据传输" class="headerlink" title="组件内部的数据传输"></a>组件内部的数据传输</h5><p> 在初学过程的项目开发中常常会有去尝试DOM操作的冲动，虽然大部分情况下这种尝试是错误的，但是在某些时候还是不得不需要获取对DOM的值进行操作。例如：点击一个按钮之后触发一个点击事件，让一个input文本框获得焦点。jQuery开发者的第一反应肯定是给button绑定点击事件，然后在事件中通过$(‘select’)获取到要操作的节点，再给节点添加焦点。然而在React中这种操作是不允许的，而React中应该怎么做呢？ </p>
+<p>React Refs属性： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line"></span><br><span class="line">class MyComponent extends Component(&#123;</span><br><span class="line">  handleClick = () =&gt; &#123;</span><br><span class="line">    // 使用原生的 DOM API 获取焦点</span><br><span class="line">    this.refs.myInput.focus();</span><br><span class="line">  &#125;,</span><br><span class="line">  render: function() &#123;</span><br><span class="line">    //  当组件插入到 DOM 后，ref 属性添加一个组件的引用于到 this.refs</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;input type=&quot;text&quot; ref=&quot;myInput&quot; /&gt;</span><br><span class="line">        &lt;input</span><br><span class="line">          type=&quot;button&quot;</span><br><span class="line">          value=&quot;点我输入框获取焦点&quot;</span><br><span class="line">          onClick=&#123;this.handleClick&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;MyComponent /&gt;,</span><br><span class="line">  document.getElementById(&apos;example&apos;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p> 我们可以从上面的代码当中看到 其中的ref在功能上扮演起了一个标识符(id)的角色，this.refs.myInput.focus()也有一种document.getElementById(‘myInput’).focus()的味道。 </p>
+<p> 上面的操作我们也称为React表单事件，React表单事件中除了ref具有关键作用外，还有另一个关键参数’event’。例如：当我需要实时获取到一个文本框里面的内容，然后进行一个判断，当满足某个条件的时候触发另一个事件。这个时候就需要使用到这个一个关键参数’event’。  </p>
+<p>React 表单事件-event参数： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class MyComponent extends Component&#123;</span><br><span class="line">    handleChange = (event) =&gt; &#123;</span><br><span class="line">        if(event.target.value === &apos;show&apos;)&#123;</span><br><span class="line">            console.log(this.refs.showText);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return(</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;input type=&quot;text&quot; onChange=&#123;this.handleChange&#125;/&gt;</span><br><span class="line">                &lt;p ref=&apos;showText&apos;&gt;条件满足我就会显示在控制台&lt;/p&gt;</span><br><span class="line">            &lt;/div&gt;   </span><br><span class="line">		)</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">export default MyComponent;</span><br></pre></td></tr></table></figure>
+
+<p> 上面实例实现的效果就是，通过event.target.value获取当前input中的内容，当input中输入的内容是show的时候，控制台就将ref为showText的整个节点内容打印出来。从这个实例当中我们也看到了，event作为一个默认参数将对应的节点内容进行了读取。 </p>
+<p> 因此在组件内部涉及的DOM操作数据传递主要就是这两种方式，可以根据不同的场景选择不同的方式。虽然ref适用于所有组件元素，但是ref在正常的情况下都不推荐使用，后面会进行介绍通过 state管理组件状态，避免进行DOM的直接操作。  </p>
+<h4 id="“父组件”向“子组件”传值"><a href="#“父组件”向“子组件”传值" class="headerlink" title="“父组件”向“子组件”传值"></a>“父组件”向“子组件”传值</h4><p> 父组件与子组件之间的通信通常使用props进行。具体如下： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">import React,&#123; Component &#125; from &apos;react&apos;</span><br><span class="line"></span><br><span class="line">class ChildComponent extends Component&#123;</span><br><span class="line">    render ()&#123;</span><br><span class="line">        return (</span><br><span class="line"></span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;h1&gt;&#123;this.props.title&#125;&lt;/h1&gt;</span><br><span class="line">                &lt;span&gt;&#123;this.props.content&#125;&lt;/span&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class ParentComponent extends Component &#123;</span><br><span class="line">    render ()&#123;</span><br><span class="line">        return (</span><br><span class="line"></span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;ChildComponent title=&quot;父组件与子组件的数据传输测试&quot; content=&quot;我是传送给子组件span中显示的数据&quot; /&gt;</span><br><span class="line">                &lt;p&gt;我是父组件的内容&lt;/p&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default ParentComponent;</span><br></pre></td></tr></table></figure>
+
+<p>上面示例展示了父组件向子组件传递了两个props属性分别为title和content，子组件通过this.props获取到对应的两个属性，并将其展示出来，这个过程就是一个父与子组件之间的数据交互方式。但是也可以从例子中看到props的值是不变的，父传给子什么样的props内容就只能接收什么样的使用，不能够在子中进行重新赋值。</p>
+<h4 id="子组件”向-“父组件”传值"><a href="#子组件”向-“父组件”传值" class="headerlink" title="子组件”向 “父组件”传值"></a>子组件”向 “父组件”传值</h4><p> 本例中将会引入了管理组件状态的state，并进行初始化。具体如下： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line">//子组件</span><br><span class="line">class Child extends Component &#123;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                请输入邮箱：&lt;input onChange=&#123;this.props.handleEmail&#125;/&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//父组件，此处通过event.target.value获取子组件的值</span><br><span class="line">class Parent extends Component&#123;</span><br><span class="line">    constructor(props)&#123;</span><br><span class="line">        super(props);</span><br><span class="line">        this.state = &#123;</span><br><span class="line">            email:&apos;&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    handleEmail = (event) =&gt; &#123;</span><br><span class="line">        this.setState(&#123;email: event.target.value&#125;);</span><br><span class="line">    &#125;;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;div&gt;用户邮箱：&#123;this.state.email&#125;&lt;/div&gt;</span><br><span class="line">                &lt;Child name=&quot;email&quot; handleEmail=&#123;this.handleEmail&#125;/&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Parent;</span><br></pre></td></tr></table></figure>
+
+<p>通过上面的例子可以看出”子组件”传递给”父组件”数据其实也很简单，概括起来就是：react中state改变了，组件才会update。父写好state和处理该state的函数，同时将函数名通过props属性值的形式传入子，子调用父的函数，同时引起state变化。子组件要写在父组件之前。 从本示例中也可以看出state可以通过setState进行重新赋值，因此state是可变的，表示的是某一时间点的组件状态。  </p>
+<h4 id="“兄弟组件”之间的传值"><a href="#“兄弟组件”之间的传值" class="headerlink" title="“兄弟组件”之间的传值"></a>“兄弟组件”之间的传值</h4><p> 当两个组件不是父子关系，但有相同的父组件时，将这两个组件称为兄弟组件。严格来说实际上React是不能进行兄弟间的数据直接绑定的，因为React的数据绑定是单向的，所以才能使得React的状态处于一个可控的范围。对于特殊的应用场景中，可以将数据挂载在父组件中，由两个组件共享：如果组件需要数据渲染，则由父组件通过props传递给该组件；如果组件需要改变数据，则父组件传递一个改变数据的回调函数给该组件，并在对应事件中调用。从而实现兄弟组件之间的数据传递。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line">//子组件</span><br><span class="line">class Child extends Component &#123;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return (</span><br><span class="line"></span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                我是子组件邮箱：&lt;input onChange=&#123;this.props.handleEmail&#125; defaultValue=&#123;this.props.value&#125; /&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//兄弟组件</span><br><span class="line">class ChildBrother extends Component &#123;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return (</span><br><span class="line"></span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                我是兄弟组件:&#123;this.props.value&#125;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//父组件，此处通过event.target.value获取子组件的值</span><br><span class="line">class Parent extends Component&#123;</span><br><span class="line">    constructor(props)&#123;</span><br><span class="line">        super(props);</span><br><span class="line">        this.state = &#123;</span><br><span class="line">            email:&apos;&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    handleEmail = (event) =&gt; &#123;</span><br><span class="line">        this.setState(&#123;email: event.target.value&#125;);</span><br><span class="line">    &#125;;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return (</span><br><span class="line"></span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;div&gt;我是父组件邮箱：&#123;this.state.email&#125;&lt;/div&gt;</span><br><span class="line">                &lt;Child handleEmail=&#123;this.handleEmail&#125; value=&#123;this.state.email&#125;/&gt;</span><br><span class="line">                &lt;ChildBrother value=&#123;this.state.email&#125;/&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Parent;</span><br></pre></td></tr></table></figure>
+
+<p>  上面例子中就是child组件的值改变后存储在父组件的state中，然后再通过props传递给兄弟组件childBrother。从而实现兄弟组件之间的数据传递。 </p>
+<h3 id="二、-基于Redux的React项目开发中的数据管理"><a href="#二、-基于Redux的React项目开发中的数据管理" class="headerlink" title="二、 基于Redux的React项目开发中的数据管理"></a>二、 基于Redux的React项目开发中的数据管理</h3><p> 前面在分析原生React组件之间的数据传输中讲到两个关键词：state和props，在项目的实际开发过程中，这里的state可能包括服务器响应数据、缓存数据、本地生成尚未持久化到服务器的数据，也包括 UI 状态，如激活的路由，被选中的标签，是否显示加载动效或者分页器等等。</p>
+<p>管理不断变化的 state 非常困难。如果一个 model 的变化会引起另一个 model 变化，那么当 view 变化时，就可能引起对应 model 以及另一个 model 的变化，依次地，可能会引起另一个 view 的变化。直至你搞不清楚到底发生了什么。state 在什么时候，由于什么原因，如何变化已然不受控制。  </p>
+<p>因此在这些问题下便产生了 Redux ，在Redux的理念中通过限制更新发生的事件和方式试图让state的变化变的可预测。Redux可以用三个基本原则来描述：</p>
+<p>单一数据源：整个应用的 state 被储存在一棵 object tree 中，并且这个 object tree 只存在于唯一一个 store 中。  </p>
+<p>State是只读的：唯一改变 state 的方法就是触发 action，action 是一个用于描述已发生事件的普通对象。</p>
+<p>使用纯函数来执行修改：为了描述 action 如何改变 state tree ，你需要编写 reducers。</p>
+<p>redux的基本工作流程为store进行管理state和reducers，reducers接收一个action和原始的state，生成一个新的state，dispatch进行触发一个action，打一个比方：store就好比是一个银行,state就是银行中存的钱，reducers就是银行的用户管理系统，dispatch就是取款机，action就是取款机发出的请求，component就是用户。所以当我们要完成一个取钱的过程，首先就是用户（component）通过取款机（dispatch）发起一个（action）取款的请求，当银行的用户管理系统（reducers）接收到请求以后，调取用户的原来的账户信息（old state），进行相应（action）操作，如果没有什么问题则更改账户信息生成新的账户资料（new state），并把钱取给用户（返回给component）。</p>
+<p>一个简单的例子：基本功能就是在一个任务管理器中添加新的任务，我们主要看其数据走向。   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">Action：</span><br><span class="line"></span><br><span class="line">let nextTodoId = 0</span><br><span class="line">export const addTodo = (text) =&gt; (&#123;</span><br><span class="line">  type: &apos;ADD_TODO&apos;,</span><br><span class="line">  id: nextTodoId++,</span><br><span class="line">  text</span><br><span class="line">&#125;)</span><br><span class="line">Reducers：</span><br><span class="line"></span><br><span class="line">const todos = (state = [], action) =&gt; &#123;</span><br><span class="line">  switch (action.type) &#123;</span><br><span class="line">    case &apos;ADD_TODO&apos;:</span><br><span class="line">      return [</span><br><span class="line">        ...state,</span><br><span class="line">        &#123;</span><br><span class="line">          id: action.id,</span><br><span class="line">          text: action.text,</span><br><span class="line">          completed: false</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    default:</span><br><span class="line">      return state</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default todos</span><br><span class="line">Component：</span><br><span class="line">import React from &apos;react&apos;</span><br><span class="line">import &#123; connect &#125; from &apos;react-redux&apos;</span><br><span class="line">import &#123; addTodo &#125; from &apos;../actions&apos;</span><br><span class="line"></span><br><span class="line">let AddTodo = (&#123; dispatch &#125;) =&gt; &#123;</span><br><span class="line">  let input</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;form onSubmit=&#123;e =&gt; &#123;</span><br><span class="line">        e.preventDefault()</span><br><span class="line">        if (!input.value.trim()) &#123;</span><br><span class="line">          return</span><br><span class="line">        &#125;</span><br><span class="line">        dispatch(addTodo(input.value))</span><br><span class="line">        input.value = &apos;&apos;</span><br><span class="line">      &#125;&#125;&gt;</span><br><span class="line">        &lt;input ref=&#123;node =&gt; &#123;</span><br><span class="line">          input = node</span><br><span class="line">        &#125;&#125; /&gt;</span><br><span class="line">        &lt;button type=&quot;submit&quot;&gt;</span><br><span class="line">          Add Todo</span><br><span class="line">        &lt;/button&gt;</span><br><span class="line">      &lt;/form&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line">AddTodo = connect()(AddTodo)</span><br><span class="line"></span><br><span class="line">export default AddTodo</span><br><span class="line">Store：</span><br><span class="line"></span><br><span class="line">import React from &apos;react&apos;</span><br><span class="line">import &#123; render &#125; from &apos;react-dom&apos;</span><br><span class="line">import &#123; createStore &#125; from &apos;redux&apos;</span><br><span class="line">import &#123; Provider &#125; from &apos;react-redux&apos;</span><br><span class="line">import App from &apos;./components/App&apos;</span><br><span class="line">import reducer from &apos;./reducers&apos;</span><br><span class="line"></span><br><span class="line">const store = createStore(reducer)</span><br><span class="line"></span><br><span class="line">render(</span><br><span class="line">  &lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">    &lt;App /&gt;</span><br><span class="line">  &lt;/Provider&gt;,</span><br><span class="line">  document.getElementById(&apos;root&apos;)</span><br><span class="line">)</span><br><span class="line">上面示例就是一个简易的react-redux项目中的数据请求与处理，component发起dispatch(addTodo(input.value))请求，reducers接收’ADD_TODO’返回一个新的state，store进行管理整个reducers和state将其结果渲染在页面当中。</span><br></pre></td></tr></table></figure>
+
+<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><p>redux只是对于react的state进行了管理，对于react的props并没有进行管理，这也与props本身的特性有关，props本身就是只读属性，所以可控性比较强，不需要进行再次包装管理。前面讲的主要是针对于同步情况下的redux的请求与处理过程，并没有阐述异步情况，由于其基本思想是一样的只是异步请求需要使用redux-saga的fetch请求远程服务器，然后再接收收据后进行相应的操作。具体的流程会在后面的基于dva的React项目开发中的数据管理中进行讲解。</p>
+<h3 id="三、-基于dva的React项目开发中的数据管理"><a href="#三、-基于dva的React项目开发中的数据管理" class="headerlink" title="三、 基于dva的React项目开发中的数据管理"></a>三、 基于dva的React项目开发中的数据管理</h3><p> dva是基于 redux、redux-saga 和 <a href="mailto:react-router@2.x" target="_blank" rel="noopener">react-router@2.x</a> 的轻量级前端框架。是使用React技术栈进行前端开发的脚手架。 </p>
+<p>dva实际上并没有引入什么新的概念，依旧使用的是React、Redux、React-route技术栈的相关概念，唯一的特点就是简化了React和Redux、Redux-saga之间的数据数据交互。可以从下面的实例中来进行简要了解：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">models：</span><br><span class="line"></span><br><span class="line">import &#123; getInputOutputProfiles,deleteInputOutputProfiles,addInputOutputProfiles &#125; from &quot;../../services/InputOutputManagement&quot;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  namespace : &apos;input_output&apos;,</span><br><span class="line">  state : &#123;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">data:[],</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">       &#125;,</span><br><span class="line">  effects : &#123;</span><br><span class="line">    *getInputOutputProfiles(&#123; payload &#125;, &#123; put, call, select &#125;) &#123;</span><br><span class="line">      const type_input=&apos;REMOTEFILESHARED_INPUT&apos;;</span><br><span class="line">      const type_output=&apos;REMOTEFILESHARED_OUTPUT&apos;;</span><br><span class="line">      const token = yield select(state =&gt; state.home.token);</span><br><span class="line">      const result_input = yield call(getInputOutputProfiles,&#123;payload:&#123;token,type:type_input&#125;&#125;);</span><br><span class="line">      const result_output = yield call(getInputOutputProfiles,&#123;payload:&#123;token,type:type_output&#125;&#125;);</span><br><span class="line">      let data=[];</span><br><span class="line">      result_input.remoteFileList.map(value =&gt; &#123;</span><br><span class="line">        data.unshift(value)</span><br><span class="line">      &#125;);</span><br><span class="line">      result_output.remoteFileList.map(value =&gt; &#123;</span><br><span class="line">        data.unshift(value)</span><br><span class="line">      &#125;);</span><br><span class="line">      console.log(data);</span><br><span class="line">      yield put(&#123;type:&apos;setData&apos;,payload:&#123; data: data &#125;&#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">      ...</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">        &#125;,</span><br><span class="line">  reducers : &#123;</span><br><span class="line">      ...</span><br><span class="line"></span><br><span class="line">setData(state,&#123; payload:&#123;data&#125; &#125;)&#123;</span><br><span class="line">  return &#123; ...state, data:data &#125;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">     &#125;,</span><br><span class="line">  subscriptions : &#123;</span><br><span class="line">    setup(&#123;dispatch, history&#125;) &#123;</span><br><span class="line">      return history.listen((&#123;pathname&#125;) =&gt; &#123;</span><br><span class="line">        if (pathname === &apos;/system/input_output&apos;) &#123;</span><br><span class="line">          dispatch(&#123;</span><br><span class="line">            type:&apos;getInputOutputProfiles&apos;</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">component：</span><br><span class="line"></span><br><span class="line">class SectionPanel extends Component&#123;</span><br><span class="line"> ...</span><br><span class="line"></span><br><span class="line"> handleSubmit = () =&gt; &#123;</span><br><span class="line">    this.props.dispatch(&#123; type: &apos;input_output/addInputOutputProfiles&apos;, payload: &#123; id:this.props.id, type:this.props.type &#125;&#125;);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line"> ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const mapStateToProps = ( state ) =&gt; &#123;</span><br><span class="line">  return state;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default connect(mapStateToProps)(SectionPanel);</span><br></pre></td></tr></table></figure>
+
+<p> 从这个示例当中我们可以看到，model中进行state的定义，以及reducers的定义，在dva中reducers是唯一可以改变state的地方。从例子中我们可以看到，在subscriptions中进行了一个订阅监听，当加载pathname === ‘/system/input_output’的时候通过dispatch发起一个异步请求getInputOutputProfiles，请求会连接到服务器，从服务器端获取相应的数据，然后再对数据进行处理，再执行reducers中的同步setData：yield put({type:’setData’,payload:{ data: _temp }});改变当前state中的data数据。有了data数据，组件就可以遍历数据呈现给用户。</p>
+<p> 这是一个由订阅数据源而发起的一个改变state的方式，除此之外，state改变和去向主要应用在组件当中，如上component当中所示，组件中需要使用state，首先要进行state和props的映射，然后组件就可以通过this.props进行获取相应的state值，因此通过mapStateToProps方法进行映射，然后通过connect方法将映射的结果与组件绑定，此处需要知道的是组件中发起请求的dispatch也是需要将组件与redux连接（connect）之后才能在组件中使用dispatch。这些准备工作做好之后便可以在组件中发起dispatch请求改变state状态了。 </p>
+<p> 从上面的示例中我们会发现在dva中不需要显式的编写action，也不用写创建store的过程，而是在dispatch中将传递action名改变为对象，对象包含两个部分{ type：”,payload:{ } }，具体触发reducers的过程以及生成新的state的具体操作都是由dva内部进行,从而简化了操作。  </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/08/搭建腾讯云https网络服务器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -518,7 +682,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new test  //原来生成一个test.md，现在还多个test同名文件夹</span><br></pre></td></tr></table></figure>
 
 <p>4.把需要的图片放入这个文件夹中</p>
-<p>5.那么，也是最重要的一步，在md文件中使用图片</p>
+<p>5.那么，也是最重要的一步，在md文件中使用图片:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset_img  原型链.png %&#125;</span><br></pre></td></tr></table></figure>
 
 <p>6.最后，在blog 目录中右键打开命令行</p>
@@ -1298,7 +1462,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
