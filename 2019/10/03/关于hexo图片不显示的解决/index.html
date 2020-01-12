@@ -79,17 +79,17 @@
 
 
 
+<meta name="description" content="解决步骤1.首先我们需要安装一个图片路径转换的插件，这个插件名字是hexo-asset-image  1npm install https://github.com/CodeFalling/hexo-asset-image --save  2.打开_config.yml文件，修改下述内容  1post_asset_folder: true  3.测试：此时hexo n 文件名    1hexo n">
 <meta property="og:type" content="article">
-<meta property="og:title" content="b">
-<meta property="og:url" content="http://yoursite.com/2020/01/12/b/index.html">
+<meta property="og:title" content="关于hexo图片不显示的解决">
+<meta property="og:url" content="http://yoursite.com/2019/10/03/关于hexo图片不显示的解决/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="解决步骤1.首先我们需要安装一个图片路径转换的插件，这个插件名字是hexo-asset-image  1npm install https://github.com/CodeFalling/hexo-asset-image --save  2.打开_config.yml文件，修改下述内容  1post_asset_folder: true  3.测试：此时hexo n 文件名    1hexo n">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/source/img/cc.png">
-<meta property="og:image" content="http://yoursite.com/2020/01/12/b/cc.png">
-<meta property="og:updated_time" content="2020-01-12T11:21:11.107Z">
+<meta property="og:updated_time" content="2020-01-12T13:10:08.847Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="b">
-<meta name="twitter:image" content="http://yoursite.com/source/img/cc.png">
+<meta name="twitter:title" content="关于hexo图片不显示的解决">
+<meta name="twitter:description" content="解决步骤1.首先我们需要安装一个图片路径转换的插件，这个插件名字是hexo-asset-image  1npm install https://github.com/CodeFalling/hexo-asset-image --save  2.打开_config.yml文件，修改下述内容  1post_asset_folder: true  3.测试：此时hexo n 文件名    1hexo n">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/01/12/b/">
+  <link rel="canonical" href="http://yoursite.com/2019/10/03/关于hexo图片不显示的解决/">
 
 
 
 
 
-  <title>b | Hexo</title>
+  <title>关于hexo图片不显示的解决 | Hexo</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/12/b/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/03/关于hexo图片不显示的解决/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">b</h1>
+          <h1 class="post-title" itemprop="name headline">关于hexo图片不显示的解决</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-12T19:01:12+08:00">
-                2020-01-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-03T20:54:01+08:00">
+                2019-10-03
               </time>
             
 
@@ -299,8 +299,22 @@
       
 
       
-        <p><img src="/source/img/cc.png" alt="img"> </p>
-<p><img src="//yoursite.com/2020/01/12/b/cc.png" alt="logo"> </p>
+        <h3 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h3><p>1.首先我们需要安装一个图片路径转换的插件，这个插件名字是hexo-asset-image </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+
+<p>2.打开_config.yml文件，修改下述内容 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br></pre></td></tr></table></figure>
+
+<p>3.测试：此时hexo n 文件名   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new test  //原来生成一个test.md，现在还多个test同名文件夹</span><br></pre></td></tr></table></figure>
+
+<p>4.把需要的图片放入这个文件夹中</p>
+<p>5.那么，也是最重要的一步，在md文件中使用图片</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset_img  原型链.png %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>6.最后，在blog 目录中右键打开命令行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo clean </span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -325,8 +339,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/01/12/a/" rel="next" title="a">
-                <i class="fa fa-chevron-left"></i> a
+              <a href="/2019/09/22/Vue小技巧/" rel="next" title="Vue小技巧">
+                <i class="fa fa-chevron-left"></i> Vue小技巧
               </a>
             
           </div>
@@ -334,6 +348,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/08/搭建腾讯云https网络服务器/" rel="prev" title="搭建腾讯云https网络服务器">
+                搭建腾讯云https网络服务器 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -385,8 +403,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -401,7 +428,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -428,6 +455,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决步骤"><span class="nav-number">1.</span> <span class="nav-text">解决步骤</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

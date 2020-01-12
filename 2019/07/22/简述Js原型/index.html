@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="简述Js中的原型与原型链1、原型Javascript是基于对象的编程语言，他其中也含有部分封装、继承的概念，而原型概念便是基于继承的。  函数的原型类似于面向对象语言中子类的父类，而函数本身类似于子类。函数继承了函数原型中的属性和方法，即函数本身可以调用它原型中的属性和方法。  知识点：若有函数Person，则它的函数原型为Person.prototype，函数原型本身是个对象。 12  在上面的">
+<meta name="description" content="简述Js中的原型与原型链1、原型Javascript是基于对象的编程语言，他其中也含有部分封装、继承的概念，而原型概念便是基于继承的。  函数的原型类似于面向对象语言中子类的父类，而函数本身类似于子类。函数继承了函数原型中的属性和方法，即函数本身可以调用它原型中的属性和方法。  知识点：若有函数Person，则它的函数原型为Person.prototype，函数原型本身是个对象。 12345678">
 <meta property="og:type" content="article">
 <meta property="og:title" content="简述Js原型">
 <meta property="og:url" content="http://yoursite.com/2019/07/22/简述Js原型/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="简述Js中的原型与原型链1、原型Javascript是基于对象的编程语言，他其中也含有部分封装、继承的概念，而原型概念便是基于继承的。  函数的原型类似于面向对象语言中子类的父类，而函数本身类似于子类。函数继承了函数原型中的属性和方法，即函数本身可以调用它原型中的属性和方法。  知识点：若有函数Person，则它的函数原型为Person.prototype，函数原型本身是个对象。 12  在上面的">
+<meta property="og:description" content="简述Js中的原型与原型链1、原型Javascript是基于对象的编程语言，他其中也含有部分封装、继承的概念，而原型概念便是基于继承的。  函数的原型类似于面向对象语言中子类的父类，而函数本身类似于子类。函数继承了函数原型中的属性和方法，即函数本身可以调用它原型中的属性和方法。  知识点：若有函数Person，则它的函数原型为Person.prototype，函数原型本身是个对象。 12345678">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2019/07/22/简述Js原型/%E4%B8%89%E8%80%85%E5%85%B3%E7%B3%BB.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/22/简述Js原型/%E5%8E%9F%E5%9E%8B%E9%93%BE.png">
-<meta property="og:updated_time" content="2020-01-12T11:08:29.845Z">
+<meta property="og:image" content="http://yoursite.com/2019/07/22/简述Js原型/三者关系.png">
+<meta property="og:image" content="http://yoursite.com/2019/07/22/简述Js原型/原型链.png">
+<meta property="og:updated_time" content="2020-01-12T12:01:57.034Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简述Js原型">
-<meta name="twitter:description" content="简述Js中的原型与原型链1、原型Javascript是基于对象的编程语言，他其中也含有部分封装、继承的概念，而原型概念便是基于继承的。  函数的原型类似于面向对象语言中子类的父类，而函数本身类似于子类。函数继承了函数原型中的属性和方法，即函数本身可以调用它原型中的属性和方法。  知识点：若有函数Person，则它的函数原型为Person.prototype，函数原型本身是个对象。 12  在上面的">
-<meta name="twitter:image" content="http://yoursite.com/2019/07/22/简述Js原型/%E4%B8%89%E8%80%85%E5%85%B3%E7%B3%BB.png">
+<meta name="twitter:description" content="简述Js中的原型与原型链1、原型Javascript是基于对象的编程语言，他其中也含有部分封装、继承的概念，而原型概念便是基于继承的。  函数的原型类似于面向对象语言中子类的父类，而函数本身类似于子类。函数继承了函数原型中的属性和方法，即函数本身可以调用它原型中的属性和方法。  知识点：若有函数Person，则它的函数原型为Person.prototype，函数原型本身是个对象。 12345678">
+<meta name="twitter:image" content="http://yoursite.com/2019/07/22/简述Js原型/三者关系.png">
 
 
 
@@ -305,10 +305,13 @@
         <h1 id="简述Js中的原型与原型链"><a href="#简述Js中的原型与原型链" class="headerlink" title="简述Js中的原型与原型链"></a>简述Js中的原型与原型链</h1><h2 id="1、原型"><a href="#1、原型" class="headerlink" title="1、原型"></a>1、原型</h2><p>Javascript是基于对象的编程语言，他其中也含有部分封装、继承的概念，而原型概念便是基于继承的。</p>
 <p> 函数的原型类似于面向对象语言中子类的父类，而函数本身类似于子类。函数继承了函数原型中的属性和方法，即函数本身可以调用它原型中的属性和方法。</p>
 <p> 知识点：若有函数Person，则它的函数原型为Person.prototype，函数原型本身是个对象。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function Person (name) &#123;</span><br><span class="line">  this.name = name;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.type = &apos;human&apos;</span><br><span class="line">Person.prototype.sayName = function () &#123;</span><br><span class="line">  console.log(this.name + &apos;说话了&apos;)</span><br><span class="line">&#125;</span><br><span class="line">//此时我们用Person构造函数构造了一个p对象</span><br><span class="line">var p = new Person(&apos;小王&apos;);</span><br><span class="line">//我们打印p.name</span><br><span class="line">console.log(p.name); //结果是&apos;小王&apos;，因为Preson函数中已经预置了name属性并且接受了new对象时传入的&apos;小王&apos;，结果勿容置疑</span><br><span class="line">//我们再打印p.type 调用p.sayName()  按常理说Preson构造函数中是不存在type属性和sayName方法，若调用应该会报错</span><br><span class="line">console.log(p.type); //结果  human</span><br><span class="line">p.sayName(); // 结果  小王说话了</span><br><span class="line">//结果和我们预想的不同，这是为什么呢?</span><br><span class="line">//因为Person继承了它原型Person.prototype中的信息，当调用p.type时，会优先在Person类中找该属性，若找到了则直接使用，若没找到则在他的原型中找并使用。因为我们设置了Person原型的type属性的，则p可以直接使用</span><br></pre></td></tr></table></figure>
 
 <p>在上面的例子中涉及到了 构造函数、对象和函数原型，接下来给出三者之间的关系图； </p>
-<h2 id="2、构造函数、实例、原型三者之间的关系"><a href="#2、构造函数、实例、原型三者之间的关系" class="headerlink" title="2、构造函数、实例、原型三者之间的关系"></a>2、构造函数、实例、原型三者之间的关系</h2><p><img src="//yoursite.com/2019/07/22/简述Js原型/%E4%B8%89%E8%80%85%E5%85%B3%E7%B3%BB.png" alt="三者关系"></p>
+<h2 id="2、构造函数、实例、原型三者之间的关系"><a href="#2、构造函数、实例、原型三者之间的关系" class="headerlink" title="2、构造函数、实例、原型三者之间的关系"></a>2、构造函数、实例、原型三者之间的关系</h2><img src="/2019/07/22/简述Js原型/三者关系.png"> 
+
+
+
 <p>由图中我们可以很直观的看到三者之间的关系。</p>
 <p>p对象由Person构造函数构造</p>
 <p>p对象通过<strong>proto</strong>属性访问到Person对象原型</p>
@@ -316,14 +319,16 @@
 <p>Person函数通过prototype属性访问到Person原型对象</p>
 <p>注意：对象是通过<strong>proto</strong>属性访问对象原型，函数是通过prototype访问对象原型，但两者访问到的对象原型是同一个</p>
 <p>验证：  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(p.__proto__ == Person.prototype); //结果为 true</span><br></pre></td></tr></table></figure>
 
 <p>constructor的作用：可以使得对象访问到对应的构造函数 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function Person()&#123;</span><br><span class="line">&#125;</span><br><span class="line">var p = new Person();</span><br><span class="line">console.log(p.constructor);// 打印  function Person()</span><br></pre></td></tr></table></figure>
 
 <p>知道以上的知识之后，我们还要了解，其实Person的原型也有原型，即存在Person.prototype.prototype，并且它是Person.prototype的原型，可以用图来直观了解这其中的关系，这便是一个简单的原型链。 </p>
-<h2 id="3、原型链"><a href="#3、原型链" class="headerlink" title="3、原型链"></a>3、原型链</h2><p>​     <img src="//yoursite.com/2019/07/22/简述Js原型/%E5%8E%9F%E5%9E%8B%E9%93%BE.png" alt="原型链"></p>
-<p>% asset_img 三者关系.png This is an test image %</p>
+<h2 id="3、原型链"><a href="#3、原型链" class="headerlink" title="3、原型链"></a>3、原型链</h2><img src="/2019/07/22/简述Js原型/原型链.png"> 
+
+
+
 <h2 id="4、原型链中的搜索规则"><a href="#4、原型链中的搜索规则" class="headerlink" title="4、原型链中的搜索规则"></a>4、原型链中的搜索规则</h2><p>了解了 <strong>构造函数-实例-原型对象</strong> 三者之间的关系后，接下来我们来解释一下为什么实例对象可以访问原型对象中的成员。</p>
 <p>每当代码读取某个对象的某个属性时，都会执行一次搜索，目标是具有给定名字的属性</p>
 <ul>
@@ -458,7 +463,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
