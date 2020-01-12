@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="首先，必须搞清楚在JS里面，函数的几种调用方式: 普通函数调用 作为方法来调用 作为构造函数来调用 使用apply/call方法来调用 Function.prototype.bind方法 es6箭头函数 但是不管函数是按哪种方法来调用的，请记住一点：谁调用这个函数或方法,this关键字就指向谁。 接下来就分情况来讨论下这些不同的情况： 一.普通函数调用1234567function person(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS中this的指向">
+<meta property="og:url" content="http://yoursite.com/2019/07/13/JS中this的指向/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="首先，必须搞清楚在JS里面，函数的几种调用方式: 普通函数调用 作为方法来调用 作为构造函数来调用 使用apply/call方法来调用 Function.prototype.bind方法 es6箭头函数 但是不管函数是按哪种方法来调用的，请记住一点：谁调用这个函数或方法,this关键字就指向谁。 接下来就分情况来讨论下这些不同的情况： 一.普通函数调用1234567function person(">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-01-12T04:44:46.273Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS中this的指向">
+<meta name="twitter:description" content="首先，必须搞清楚在JS里面，函数的几种调用方式: 普通函数调用 作为方法来调用 作为构造函数来调用 使用apply/call方法来调用 Function.prototype.bind方法 es6箭头函数 但是不管函数是按哪种方法来调用的，请记住一点：谁调用这个函数或方法,this关键字就指向谁。 接下来就分情况来讨论下这些不同的情况： 一.普通函数调用1234567function person(">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/13/JS中this的指向/">
+
+
+
+
+
+  <title>JS中this的指向 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/13/JS中this的指向/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JS中this的指向</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-13T12:18:23+08:00">
+                2019-07-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>首先，必须搞清楚在JS里面，函数的几种调用方式: 普通函数调用 作为方法来调用 作为构造函数来调用 使用apply/call方法来调用 Function.prototype.bind方法 es6箭头函数 但是不管函数是按哪种方法来调用的，请记住一点：谁调用这个函数或方法,this关键字就指向谁。 接下来就分情况来讨论下这些不同的情况：</p>
+<h3 id="一-普通函数调用"><a href="#一-普通函数调用" class="headerlink" title="一.普通函数调用"></a>一.普通函数调用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function person()&#123;</span><br><span class="line">    this.name=&quot;xiaohei&quot;;</span><br><span class="line">    console.log(this);</span><br><span class="line">    console.log(this.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">person();  //输出  window  xiaohei</span><br></pre></td></tr></table></figure>
+
+<p>在这段代码中person函数作为普通函数调用，实际上person是作为全局对象window的一个方法来进行调用的,即window.person(); 所以这个地方是window对象调用了person方法,那么person函数当中的this即指window,同时window还拥有了另外一个属性name,值为xiaohei</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var name=&quot;xiaobai&quot;;</span><br><span class="line">function person()&#123;</span><br><span class="line">    console.log(this.name);</span><br><span class="line">&#125;</span><br><span class="line">person(); //输出 xiaobai</span><br></pre></td></tr></table></figure>
+
+<p>同样这个地方person作为window的方法来调用，在代码的一开始定义了一个全局变量name，值为xiaobai,它相当于window的一个属性,即window.name=”xiaobai”,又因为在调用person的时候this是指向window的，因此这里会输出xiaobai  </p>
+<h3 id="二-作为方法来调用"><a href="#二-作为方法来调用" class="headerlink" title="二.作为方法来调用"></a>二.作为方法来调用</h3><p>在上面的代码中，普通函数的调用即是作为window对象的方法进行调用。显然this关键字指向了window对象. </p>
+<p>再来看下其他的形式 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> var name=&quot;XL&quot;;</span><br><span class="line"> var person=&#123;</span><br><span class="line">     name:&quot;xl&quot;,</span><br><span class="line">     showName:function()&#123;</span><br><span class="line">         console.log(this.name);</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> person.showName();  //输出  xl</span><br><span class="line">//这里是person对象调用showName方法，很显然this关键字是指向person对象的，所以会输出name</span><br><span class="line"> </span><br><span class="line"> var showNameA=person.showName;</span><br><span class="line"> showNameA();    //输出  XL</span><br><span class="line"> //这里将person.showName方法赋给showNameA变量，此时showNameA变量相当于window对象的一个属性，因此showNameA()执行的时候相当于window.showNameA(),即window对象调用showNameA这个方法，所以this关键字指向window</span><br></pre></td></tr></table></figure>
+
+<p>再换种形式： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var personA=&#123;</span><br><span class="line">    name:&quot;xl&quot;,</span><br><span class="line">    showName:function()&#123;</span><br><span class="line">        console.log(this.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var personB=&#123;</span><br><span class="line">    name:&quot;XL&quot;,</span><br><span class="line">    sayName:personA.showName</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">personB.sayName();  //输出 XL</span><br><span class="line">//虽然showName方法是在personA这个对象中定义，但是调用的时候却是在personB这个对象中调用，因此this对象指向</span><br></pre></td></tr></table></figure>
+
+<h3 id="三-作为构造函数来调用"><a href="#三-作为构造函数来调用" class="headerlink" title="三.作为构造函数来调用"></a>三.作为构造函数来调用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function  Person(name)&#123;</span><br><span class="line">    this.name=name;</span><br><span class="line">&#125;</span><br><span class="line">var personA=Person(&quot;xl&quot;);   </span><br><span class="line">console.log(personA.name); // 输出  undefined</span><br><span class="line">console.log(window.name);//输出  xl</span><br><span class="line"> //上面代码没有进行new操作，相当于window对象调用Person(&quot;xl&quot;)方法，那么this指向window对象，并进行赋值操作window.name=&quot;xl&quot;.</span><br><span class="line"> </span><br><span class="line">var personB=new Person(&quot;xl&quot;);</span><br><span class="line">console.log(personB.name);// 输出 xl</span><br><span class="line">//这部分代码的解释见下</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-new操作符"><a href="#1-new操作符" class="headerlink" title="1.new操作符"></a>1.new操作符</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//下面这段代码模拟了new操作符(实例化对象)的内部过程</span><br><span class="line">  function person(name)&#123;</span><br><span class="line">      var o=&#123;&#125;;</span><br><span class="line">      o.__proto__=Person.prototype;  //原型继承</span><br><span class="line">      Person.call(o,name);</span><br><span class="line">      return o;</span><br><span class="line">  &#125;</span><br><span class="line">  var personB=person(&quot;xl&quot;);</span><br><span class="line">  </span><br><span class="line">  console.log(personB.name);  // 输出  xl</span><br></pre></td></tr></table></figure>
+
+<p>在person里面首先创建一个空对象o，将o的proto指向Person.prototype完成对原型的属性和方法的继承 Person.call(o,name)这里即函数Person作为apply/call调用(具体内容下方)，将Person对象里的this改为o，即完成了o.name=name操作 返回对象o。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">因此`person(&quot;xl&quot;)`返回了一个继承了`Person.prototype`对象上的属性和方法，以及拥有`name`属性为&quot;xl&quot;的对象，并将它赋给变量`personB`.</span><br><span class="line">所以`console.log(personB.name)`会输出&quot;xl&quot;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-call-apply方法的调用"><a href="#2-call-apply方法的调用" class="headerlink" title="2..call/apply方法的调用"></a>2..call/apply方法的调用</h5><p> 在JS里函数也是对象，因此函数也有方法。从Function.prototype上继承到Function.prototype.call/Function.prototype.apply方法 call/apply方法最大的作用就是能改变this关键字的指向.  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">Obj.method.apply(AnotherObj,arguments);</span><br><span class="line"></span><br><span class="line">  var name=&quot;XL&quot;;</span><br><span class="line">     var Person=&#123;</span><br><span class="line">        name:&quot;xl&quot;,</span><br><span class="line">         showName:function()&#123;</span><br><span class="line">             console.log(this.name);</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br><span class="line">     Person.showName.call(); //输出 &quot;XL&quot;</span><br><span class="line">     //这里call方法里面的第一个参数为空，默认指向window。</span><br><span class="line">     //虽然showName方法定义在Person对象里面，但是使用call方法后，将showName方法里面的this指向了window。因此最后会输出&quot;XL&quot;;</span><br><span class="line">    funtion FruitA(n1,n2)&#123;</span><br><span class="line">         this.n1=n1;</span><br><span class="line">         this.n2=n2;</span><br><span class="line">         this.change=function(x,y)&#123;</span><br><span class="line">             this.n1=x;</span><br><span class="line">             this.n2=y;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     var fruitA=new FruitA(&quot;cheery&quot;,&quot;banana&quot;);</span><br><span class="line">     var FruitB=&#123;</span><br><span class="line">         n1:&quot;apple&quot;,</span><br><span class="line">         n2:&quot;orange&quot;</span><br><span class="line">     &#125;;</span><br><span class="line">     fruitA.change.call(FruitB,&quot;pear&quot;,&quot;peach&quot;);</span><br><span class="line">     </span><br><span class="line">     console.log(FruitB.n1); //输出 pear</span><br><span class="line">     console.log(FruitB.n2);// 输出 peach</span><br></pre></td></tr></table></figure>
+
+<p>FruitB调用fruitA的change方法，将fruitA中的this绑定到对象FruitB上。</p>
+<h5 id="3-Function-prototype-bind-方法"><a href="#3-Function-prototype-bind-方法" class="headerlink" title="3.Function.prototype.bind()方法"></a>3.Function.prototype.bind()方法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var name=&quot;XL&quot;;</span><br><span class="line">function Person(name)&#123;</span><br><span class="line">    this.name=name;</span><br><span class="line">    this.sayName=function()&#123;</span><br><span class="line">        setTimeout(function()&#123;</span><br><span class="line">            console.log(&quot;my name is &quot;+this.name);</span><br><span class="line">        &#125;,50)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var person=new Person(&quot;xl&quot;);</span><br><span class="line">person.sayName()  //输出  “my name is XL”;</span><br><span class="line">                   //这里的setTimeout()定时函数,相当于window.setTimeout(),由window这个全局对象对调用,因此this的指向为window, 则this.name则为XL</span><br></pre></td></tr></table></figure>
+
+<p>那么如何才能输出<code>&quot;my name is xl&quot;</code>呢？ </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var name=&quot;XL&quot;;</span><br><span class="line">function Person(name)&#123;</span><br><span class="line">    this.name=name;</span><br><span class="line">    this.sayName=function()&#123;</span><br><span class="line">        setTimeout(function()&#123;</span><br><span class="line">            console.log(&quot;my name is &quot;+this.name);</span><br><span class="line">        &#125;.bind(this),50)  //注意这个地方使用的bind()方法，绑定setTimeout里面的匿名函数的this一直指向Person对象</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var person=new Person(&quot;xl&quot;);</span><br><span class="line">person.sayName(); //输出 “my name is xl”;</span><br></pre></td></tr></table></figure>
+
+<p>这里setTimeout(function(){console.log(this.name)}.bind(this),50);,匿名函数使用bind(this)方法后创建了新的函数，这个新的函数不管在什么地方执行，this都指向的Person,而非window,因此最后的输出为”my name is xl”而不是”my name is XL” 另外几个需要注意的地方： setTimeout/setInterval/匿名函数执行的时候，this默认指向window对象，除非手动改变this的指向。在《javascript高级程序设计》当中，写到：“超时调用的代码(setTimeout)都是在全局作用域中执行的，因此函数中的this的值，在非严格模式下是指向window对象，在严格模式下是指向undefined”。本文都是在非严格模式下的情况。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var name=&quot;XL&quot;;</span><br><span class="line">  function Person()&#123;</span><br><span class="line">      this.name=&quot;xl&quot;;</span><br><span class="line">      this.showName=function()&#123;</span><br><span class="line">          console.log(this.name);</span><br><span class="line">      &#125;</span><br><span class="line">      setTimeout(this.showName,50);</span><br><span class="line">  &#125;</span><br><span class="line">  var person=new Person(); //输出 &quot;XL&quot;</span><br><span class="line">  </span><br><span class="line">  //在setTimeout(this.showName,50)语句中，会延时执行this.showName方法</span><br><span class="line">  //this.showName方法即构造函数Person()里面定义的方法。50ms后，执行this.showName方法，this.showName里面的this此时便指向了window对象。则会输出&quot;XL&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>修改上面的代码： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var name=&quot;XL&quot;;</span><br><span class="line">   function Person()&#123;</span><br><span class="line">      this.name=&quot;xl&quot;;</span><br><span class="line">      var that=this;</span><br><span class="line">      this.showName=function()&#123;</span><br><span class="line">         console.log(that.name);</span><br><span class="line">      &#125;</span><br><span class="line">      setTimeout(this.showName,50)</span><br><span class="line"> &#125;</span><br><span class="line"> var person=new Person(); //输出 &quot;xl&quot;</span><br><span class="line"> </span><br><span class="line">//这里在Person函数当中将this赋值给that，即让that保存Person对象，因此在setTimeout(this.showName,50)执行过程当中，console.log(that.name)即会输出Person对象的属性&quot;xl&quot;</span><br></pre></td></tr></table></figure>
+
+<p>匿名函数： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var name=&quot;XL&quot;;</span><br><span class="line">  var person=&#123;</span><br><span class="line">      name:&quot;xl&quot;,</span><br><span class="line">      showName:function()&#123;</span><br><span class="line">          console.log(this.name);</span><br><span class="line">      &#125;</span><br><span class="line">      sayName:function()&#123;</span><br><span class="line">          (function(callback)&#123;</span><br><span class="line">            callback();</span><br><span class="line">         &#125;)(this.showName)</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> person.sayName();  //输出 XL</span><br><span class="line"> var name=&quot;XL&quot;;</span><br><span class="line"> var person=&#123;</span><br><span class="line">     name:&quot;xl&quot;,</span><br><span class="line">     showName:function()&#123;</span><br><span class="line">         console.log(this.name);</span><br><span class="line">     &#125;</span><br><span class="line">     sayName:function()&#123;</span><br><span class="line">         var that=this;</span><br><span class="line">         (function(callback)&#123;</span><br><span class="line">            callback();</span><br><span class="line">        &#125;)(that.showName)</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> person.sayName() ;  //输出  &quot;xl&quot;</span><br><span class="line">//匿名函数的执行同样在默认情况下this是指向window的，除非手动改变this的绑定对象</span><br></pre></td></tr></table></figure>
+
+<h3 id="四-箭头函数"><a href="#四-箭头函数" class="headerlink" title="四.箭头函数"></a>四.箭头函数</h3><p>es6里面this指向固定化，始终指向外部对象，因为箭头函数没有this,因此它自身不能进行new实例化,同时也不能使用call, apply, bind等方法来改变this的指向 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function Timer() &#123;</span><br><span class="line">     this.seconds = 0;</span><br><span class="line">     setInterval( () =&gt; this.seconds ++, 1000);</span><br><span class="line"> &#125; </span><br><span class="line"> </span><br><span class="line"> var timer = new Timer();</span><br><span class="line"> </span><br><span class="line"> setTimeout( () =&gt; console.log(timer.seconds), 3100);</span><br><span class="line"> </span><br><span class="line"> // 3</span><br><span class="line">// 在构造函数内部的setInterval()内的回调函数，this始终指向实例化的对象，并获取实例化对象的seconds的属性,每1s这个属性的值都会增加1。否则最后在3s后执行setTimeOut()函数执行后输出的是0</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/22/简述Js原型/" rel="prev" title="简述Js原型">
+                简述Js原型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-普通函数调用"><span class="nav-number">1.</span> <span class="nav-text">一.普通函数调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-作为方法来调用"><span class="nav-number">2.</span> <span class="nav-text">二.作为方法来调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-作为构造函数来调用"><span class="nav-number">3.</span> <span class="nav-text">三.作为构造函数来调用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-new操作符"><span class="nav-number">3.0.1.</span> <span class="nav-text">1.new操作符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-call-apply方法的调用"><span class="nav-number">3.0.2.</span> <span class="nav-text">2..call/apply方法的调用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-Function-prototype-bind-方法"><span class="nav-number">3.0.3.</span> <span class="nav-text">3.Function.prototype.bind()方法</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#四-箭头函数"><span class="nav-number">4.</span> <span class="nav-text">四.箭头函数</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

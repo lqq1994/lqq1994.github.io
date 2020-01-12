@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="XMLHttpRequestXMLHttpRequest是最早出现的与服务器交换数据的方案，有了XMLHttpRequest，开发者终于可以在不重新加载页面的情况下更新网页，可以在页面加载后请求接受以及发送数据。而所有浏览器均可以获取XMLHttpRequest对象：   1var xhr = new XMLHttpRequest(); //获取xhr对象  但是XMLHttpRequest是个比">
+<meta property="og:type" content="article">
+<meta property="og:title" content="请求方法的理解">
+<meta property="og:url" content="http://yoursite.com/2019/08/05/请求方法的理解/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="XMLHttpRequestXMLHttpRequest是最早出现的与服务器交换数据的方案，有了XMLHttpRequest，开发者终于可以在不重新加载页面的情况下更新网页，可以在页面加载后请求接受以及发送数据。而所有浏览器均可以获取XMLHttpRequest对象：   1var xhr = new XMLHttpRequest(); //获取xhr对象  但是XMLHttpRequest是个比">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-01-12T05:00:07.563Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="请求方法的理解">
+<meta name="twitter:description" content="XMLHttpRequestXMLHttpRequest是最早出现的与服务器交换数据的方案，有了XMLHttpRequest，开发者终于可以在不重新加载页面的情况下更新网页，可以在页面加载后请求接受以及发送数据。而所有浏览器均可以获取XMLHttpRequest对象：   1var xhr = new XMLHttpRequest(); //获取xhr对象  但是XMLHttpRequest是个比">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/05/请求方法的理解/">
+
+
+
+
+
+  <title>请求方法的理解 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/05/请求方法的理解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">请求方法的理解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-05T12:48:28+08:00">
+                2019-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="XMLHttpRequest"><a href="#XMLHttpRequest" class="headerlink" title="XMLHttpRequest"></a><strong>XMLHttpRequest</strong></h2><p>XMLHttpRequest是最早出现的与服务器交换数据的方案，有了XMLHttpRequest，开发者终于可以在不重新加载页面的情况下更新网页，可以在页面加载后请求接受以及发送数据。而所有浏览器均可以获取XMLHttpRequest对象：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest(); //获取xhr对象</span><br></pre></td></tr></table></figure>
+
+<p>但是XMLHttpRequest是个比较粗燥的底层对象，各个浏览器对其的创建方法也不同，以下是兼容方法：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var xhr;</span><br><span class="line">if (window.XMLHttpRequest) &#123; </span><br><span class="line">    // Mozilla, Safari...  </span><br><span class="line">    xhr = new XMLHttpRequest();</span><br><span class="line">&#125; else if (window.ActiveXObject) &#123; </span><br><span class="line">    // IE  </span><br><span class="line">    try &#123;  </span><br><span class="line">    xhr = new ActiveXObject(&apos;Msxml2.XMLHTTP&apos;); </span><br><span class="line">    &#125; catch (e) &#123; </span><br><span class="line">        try &#123;   </span><br><span class="line">            xhr = new ActiveXObject(&apos;Microsoft.XMLHTTP&apos;);  //IE5,6 </span><br><span class="line">        &#125; catch (e) &#123;&#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用XMLHttpRequest发起一个get请求 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//get请求</span><br><span class="line">xhr.open(&quot;GET&quot;,&quot;test1.txt&quot;,true);xhr.send();</span><br></pre></td></tr></table></figure>
+
+<p>完整的post请求代码如下： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">var xhr;</span><br><span class="line">if (window.XMLHttpRequest) &#123; </span><br><span class="line">    // Mozilla, Safari...  </span><br><span class="line">    xhr = new XMLHttpRequest();</span><br><span class="line">&#125; else if (window.ActiveXObject) &#123;</span><br><span class="line">    // IE  </span><br><span class="line">    try &#123;    </span><br><span class="line">        xhr = new ActiveXObject(&apos;Msxml2.XMLHTTP&apos;); </span><br><span class="line">    &#125; catch (e) &#123; </span><br><span class="line">        try &#123;  </span><br><span class="line">            xhr = new ActiveXObject(&apos;Microsoft.XMLHTTP&apos;);  </span><br><span class="line">        &#125; catch (e) &#123;</span><br><span class="line">            </span><br><span class="line">        &#125; </span><br><span class="line">    &#125;&#125;if (xhr) &#123;</span><br><span class="line">        xhr.onreadystatechange = onReadyStateChange;</span><br><span class="line">        xhr.open(&apos;POST&apos;, &apos;/api&apos;, true);  </span><br><span class="line">        // 设置 Content-Type 为 application/x-www-form-urlencoded  </span><br><span class="line">        // 以表单的形式传递数据  </span><br><span class="line">        xhr.setRequestHeader(&apos;Content-Type&apos;, &apos;application/x-www-form-urlencoded&apos;); </span><br><span class="line">        xhr.send(&apos;username=admin&amp;password=root&apos;);&#125;</span><br><span class="line">// onreadystatechange 方法</span><br><span class="line">function onReadyStateChange() &#123; </span><br><span class="line">    // 该函数会被调用四次  </span><br><span class="line">    if (xhr.readyState === 4 &amp;&amp;xhr.status === 200) &#123;  </span><br><span class="line">        console.log(&apos;执行成功&apos;);  </span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        console.log(&apos;执行出错&apos;);  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Jquery-Ajax"><a href="#Jquery-Ajax" class="headerlink" title="　Jquery Ajax"></a>　<strong>Jquery Ajax</strong></h2><p>说到Jquery，这是一个时代，几乎统治了前端10年有余，彻底解决了UI层与数据层交互的问题，直到三大框架(Angular/React/Vue）的出现，前端进入MVVM浪潮。而Ajax将XHR进行封装，让开发者可以更加便捷方便进行使用。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;   </span><br><span class="line">    //标准写法 </span><br><span class="line">    type: &apos;POST&apos;, </span><br><span class="line">    url: url,   </span><br><span class="line">    data: data, </span><br><span class="line">    dataType: dataType, </span><br><span class="line">    success: function () &#123;&#125;, </span><br><span class="line">    error: function () &#123;&#125;&#125;);</span><br><span class="line">$.get(url,function()&#123;&#125;); </span><br><span class="line">//get请求</span><br><span class="line">$.post(url,body,function()&#123;&#125;);</span><br><span class="line">//post请求</span><br><span class="line">$.getJSON(url,function()&#123;&#125;);  </span><br><span class="line">//get请求从服务器加载Json编码</span><br></pre></td></tr></table></figure>
+
+<p>优点： 对原生XHR的封装 针对MVC的编程 完美的兼容性 支持jsonp</p>
+<p> 缺点： 不符合MVVM 异步模型不够现代，不支持链式，代码可读性差 整个Jquery太大，引入成本过高  </p>
+<h2 id="Fetch"><a href="#Fetch" class="headerlink" title="Fetch"></a><strong>Fetch</strong></h2><p>fetch其实是一个新世界，脱离的XHR，完全是基于Promise的异步处理机制，使用起来会比起ajax更加简单。 使用fetch的代码会相比xhr来说更具有条理性  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fetch(url).then(function(response) &#123; </span><br><span class="line">    return response.json();&#125;).then(function(data) &#123; </span><br><span class="line">    console.log(data);</span><br><span class="line">&#125;).catch(function(e) &#123; </span><br><span class="line">    console.log(&quot;Oops, error&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>在使用ES6的箭头函数后 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fetch(url).then(response =&gt; response.json()) </span><br><span class="line">    .then(data =&gt; console.log(data))</span><br><span class="line">    .catch(e =&gt; console.log(&quot;Oops, error&quot;, e))</span><br></pre></td></tr></table></figure>
+
+<p>优点： 更加底层，提供的API丰富（request, response） 语法简单，脱离了XHR，基于ES新的Promise设计 </p>
+<p>看到以上，或许你会觉得fetch真的很美好，但是请了解，fetch本身是一个 low-level 的 API，它注定不会像你习惯的 $.ajax 或是 axios 等库帮你封装各种各样的功能或实现。</p>
+<p> 所以它是存在一定的缺点： 兼容性比较凄惨，低级别浏览器均不支持，需要实现fetch的polyfill了。思路其实很简单，就是判断浏览器是否支持原生的fetch，不支持的话，就仍然使用XMLHttpRequest的方式实现，同时结合Promise来进行封装。常见的polyfill就有：es6-promise,babel-polyfill,fetch-ie8等    </p>
+<p>不支持jsonp，可以引入fetch-jsonp `javascript //安装 npm install fetch-jsonp –save-dev </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//使用 </span><br><span class="line">fetchJsonp(url, &#123; </span><br><span class="line">    timeout: 3000, </span><br><span class="line">    jsonpCallback: &apos;callback&apos; </span><br><span class="line">&#125;)</span><br><span class="line">    .then(function(response) &#123;</span><br><span class="line">    console.log(response.json());</span><br><span class="line">&#125;)</span><br><span class="line">    .catch(function(e) &#123; </span><br><span class="line">    console.log(e) </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>没有拦截器，需要额外再封装一层或者fetch-interceptor- 默认不带cookie，需要添加配置 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">javascriptfetch(url,&#123;  </span><br><span class="line">    credentials: &apos;include&apos; //include表示cookie既可同域，也可跨域，‘same-origin’表示只可同域</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>没有abort，不支持timeout超时处理 可以用Promise.race()实现，Promise.race(iterable) 方法返回一个Promise对象，只要 iterable 中任意一个Promise 被 resolve 或者 reject 后，外部的Promise 就会以相同的值被 resolve 或者 reject。 无法获取progress状态 fetch中的Response.body 中实现了getReader()方法用于读取原始字节流, 该字节流可以循环读取。参考： <a href="https://stackoverflow.com/questions/35711724/upload-progress-indicators-for-fetch" target="_blank" rel="noopener">https://stackoverflow.com/questions/35711724/upload-progress-indicators-for-fetch</a> <a href="https://jakearchibald.com/2016/streams-ftw/" target="_blank" rel="noopener">https://jakearchibald.com/2016/streams-ftw/</a></p>
+<h2 id="Axios"><a href="#Axios" class="headerlink" title="Axios"></a><strong>Axios</strong></h2><p>axios也是比较新的网络请求的类库，并且被尤雨溪尤大推荐，已成为VUE的网络请求标配，也是十分的火爆。它本身也是对原生XHR的封装。 </p>
+<p>支持node，创建http请求 支持Promise API 客户端防止CSRF：每个请求带一个cookie拿到的key 拦截请求和响应 可取消请求 </p>
+<p>兼容性上虽然axios本质上也是对原生XHR的封装，但是它也依赖原生ES6 Promise的实现，和fetch一样需要polyfill的兼容。 </p>
+<p>安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//npmnpm install axios</span><br><span class="line">//cdn&lt;script src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>基本使用如下： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">axios(&#123;    </span><br><span class="line">    method: &apos;GET&apos;,  </span><br><span class="line">    url: url,&#125;)</span><br><span class="line">    .then(res =&gt; &#123;</span><br><span class="line">    console.log(res)</span><br><span class="line">&#125;)</span><br><span class="line">    .catch(err =&gt; &#123;</span><br><span class="line">    console.log(err)</span><br><span class="line">&#125;)</span><br><span class="line">// get请求</span><br><span class="line">axios.get(url)  </span><br><span class="line">    .then(function (response) &#123;  </span><br><span class="line">    console.log(response);  </span><br><span class="line">&#125;)  </span><br><span class="line">    .catch(function (error) &#123;  </span><br><span class="line">    console.log(error);  </span><br><span class="line">&#125;);</span><br><span class="line">// post请求</span><br><span class="line">axios.post(‘/user’, &#123;  </span><br><span class="line">    name: &apos;Jerry&apos;, </span><br><span class="line">    lastName: &apos;Liang&apos; </span><br><span class="line">&#125;) </span><br><span class="line">    .then(function (response) &#123; </span><br><span class="line">    console.log(response); </span><br><span class="line">&#125;) </span><br><span class="line">    .catch(function (error) &#123; </span><br><span class="line">    console.log(error); </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="特殊场景的处理"><a href="#特殊场景的处理" class="headerlink" title="特殊场景的处理"></a><strong>特殊场景的处理</strong></h2><p>在开发过程中，经常会遇到比较尴尬的场景就是多请求的串行与并发，并发比较容易解决，不存在回调地狱，但是代码可读性就会容易变得很渣，而串行问题对于前端是绝望的，最好的办法是后端来做合并，如果后端不做这块的处理，前端就必须来面对回调地狱  </p>
+<h3 id="多请求串行"><a href="#多请求串行" class="headerlink" title="多请求串行"></a><strong>多请求串行</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// ajax</span><br><span class="line">$.ajax(&#123; </span><br><span class="line">    url: &apos;&apos;,</span><br><span class="line">    data: &apos;&apos;,   </span><br><span class="line">    success: function (data) &#123;   </span><br><span class="line">        $.ajax(&#123;       </span><br><span class="line">            url: &apos;&apos;, </span><br><span class="line">            data: &apos;&apos;,      </span><br><span class="line">            success: function (data</span><br><span class="line">            ) &#123;   </span><br><span class="line">                $.ajax(&#123;    </span><br><span class="line">                    // 如此一层嵌套一层    </span><br><span class="line">                &#125;)     </span><br><span class="line">            &#125;       </span><br><span class="line">        &#125;)   </span><br><span class="line">    &#125;&#125;)</span><br><span class="line">//axios</span><br><span class="line">axios.get(url).then(res =&gt; &#123; </span><br><span class="line">    return axios.get(url,&#123;  </span><br><span class="line">        &#123;name:result.name&#125;  </span><br><span class="line">                     &#125;);</span><br><span class="line">&#125;).then(res =&gt; &#123;    </span><br><span class="line">    //如此一层层嵌套</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="多请求并行"><a href="#多请求并行" class="headerlink" title="多请求并行"></a><strong>多请求并行</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">//ajax 通过计数器实现（虽然Jquery支持$.when的方式，但此处不做案例）</span><br><span class="line">var num = 0;</span><br><span class="line">function all()&#123;  </span><br><span class="line">    num++;   </span><br><span class="line">    if(n&gt;=3)console.log(&apos;三个请求全部完成&apos;)；</span><br><span class="line">&#125;</span><br><span class="line">$.ajax(&#123; </span><br><span class="line">    url: &apos;&apos;, </span><br><span class="line">    data: &apos;&apos;,  </span><br><span class="line">    success: function (data) &#123; </span><br><span class="line">        console.log(&quot;ajax请求1 完成&quot;);  </span><br><span class="line">        all();  </span><br><span class="line">    &#125;&#125;)</span><br><span class="line">$.ajax(&#123;  </span><br><span class="line">    url: &apos;&apos;, </span><br><span class="line">    data: &apos;&apos;,   </span><br><span class="line">    success: function (data) &#123;    </span><br><span class="line">        console.log(&quot;ajax请求2 完成&quot;);   </span><br><span class="line">        all();</span><br><span class="line">    &#125;&#125;)</span><br><span class="line">$.ajax(&#123;  </span><br><span class="line">    url: &apos;&apos;, </span><br><span class="line">    data: &apos;&apos;,  </span><br><span class="line">    success: function (data) &#123;    </span><br><span class="line">        console.log(&quot;ajax请求3 完成&quot;);  </span><br><span class="line">        all();   </span><br><span class="line">    &#125;&#125;)</span><br><span class="line">//axios</span><br><span class="line">function getInfo() &#123; </span><br><span class="line">    return axios.get(url);</span><br><span class="line">&#125;function getUser() &#123; </span><br><span class="line">    return axios.get(url);</span><br><span class="line">&#125;axios.all([getInfo(),</span><br><span class="line">            getUser()]) </span><br><span class="line">    .then(axios.spread(function (info, user) &#123;   </span><br><span class="line">    // 两个请求现在都执行完成 </span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/22/简述Js原型/" rel="next" title="简述Js原型">
+                <i class="fa fa-chevron-left"></i> 简述Js原型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/22/Vue小技巧/" rel="prev" title="Vue小技巧">
+                Vue小技巧 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#XMLHttpRequest"><span class="nav-number">1.</span> <span class="nav-text">XMLHttpRequest</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jquery-Ajax"><span class="nav-number">2.</span> <span class="nav-text">　Jquery Ajax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fetch"><span class="nav-number">3.</span> <span class="nav-text">Fetch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Axios"><span class="nav-number">4.</span> <span class="nav-text">Axios</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊场景的处理"><span class="nav-number">5.</span> <span class="nav-text">特殊场景的处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多请求串行"><span class="nav-number">5.1.</span> <span class="nav-text">多请求串行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多请求并行"><span class="nav-number">5.2.</span> <span class="nav-text">多请求并行</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

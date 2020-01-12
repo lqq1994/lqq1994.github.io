@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、 js适配经验：在写代码的时候，很有可能写到这种代码：  1[1,2,3,4,5].includes(1)  或者是使用promise等es6的方法，但是我们的需求是在Android4.4上面完美运行。这样就会出现includes is not undefied等错误提示。我们可以通过webpack的插件来解决，具体的使用方法：   123456789import &amp;quot;babel-po">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue小技巧">
+<meta property="og:url" content="http://yoursite.com/2019/09/22/Vue小技巧/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、 js适配经验：在写代码的时候，很有可能写到这种代码：  1[1,2,3,4,5].includes(1)  或者是使用promise等es6的方法，但是我们的需求是在Android4.4上面完美运行。这样就会出现includes is not undefied等错误提示。我们可以通过webpack的插件来解决，具体的使用方法：   123456789import &amp;quot;babel-po">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-01-12T05:29:50.546Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue小技巧">
+<meta name="twitter:description" content="一、 js适配经验：在写代码的时候，很有可能写到这种代码：  1[1,2,3,4,5].includes(1)  或者是使用promise等es6的方法，但是我们的需求是在Android4.4上面完美运行。这样就会出现includes is not undefied等错误提示。我们可以通过webpack的插件来解决，具体的使用方法：   123456789import &amp;quot;babel-po">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/22/Vue小技巧/">
+
+
+
+
+
+  <title>Vue小技巧 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/22/Vue小技巧/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vue小技巧</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-22T10:11:00+08:00">
+                2019-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、-js适配经验："><a href="#一、-js适配经验：" class="headerlink" title="一、 js适配经验："></a>一、 js适配经验：</h2><p>在写代码的时候，很有可能写到这种代码： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1,2,3,4,5].includes(1)</span><br></pre></td></tr></table></figure>
+
+<p>或者是使用promise等es6的方法，但是我们的需求是在Android4.4上面完美运行。这样就会出现includes is not undefied等错误提示。我们可以通过webpack的插件来解决，具体的使用方法：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &quot;babel-polyfill&quot;</span><br><span class="line">import es6Promise from &apos;es6-promise&apos;</span><br><span class="line">es6Promise.polyfill()</span><br><span class="line">require(&apos;es6-promise&apos;).polyfill()</span><br><span class="line"></span><br><span class="line">// webpack配置文件处</span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: [&apos;babel-polyfill&apos;, &apos;./src/main.js&apos;]</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、-全局定义"><a href="#二、-全局定义" class="headerlink" title="二、 全局定义"></a>二、 全局定义</h2><p>当我们写了很多库的时候，我们引入页面可能会变成这样： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// vue 1</span><br><span class="line">import utils from &quot;library&quot;</span><br><span class="line">// vue 2</span><br><span class="line">import utils from &quot;library&quot;</span><br><span class="line">...</span><br><span class="line">// vue n</span><br><span class="line">import utils from &quot;library&quot;</span><br></pre></td></tr></table></figure>
+
+<p>可以这样处理 ，这样会节省很多没有必要的代码量 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import http from &quot;http/http&quot;</span><br><span class="line">Vue.prototype.$okhttp = http</span><br><span class="line"></span><br><span class="line">// use</span><br><span class="line">this.$okhttp</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、-自定义目录"><a href="#三、-自定义目录" class="headerlink" title="三、 自定义目录"></a>三、 自定义目录</h2><p>在写代码的时候，很多时候都存在这种情况 ： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这样写的缺陷是一旦某个目录发生变化就会导致引入错误。可以通过webpack路径解决 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在resolve-&gt;alias里面可以配置绝对相对路径，在使用的时候 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="四、-路由懒加载"><a href="#四、-路由懒加载" class="headerlink" title="四、 路由懒加载"></a>四、 路由懒加载</h2><p>官方文档里面定义路由的时候都有两步： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在做大型项目的时候 很可能定义很多很多个路由，那样页面就会写的特别多。此时懒加载就会解决这个问题  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import Router from &apos;vue-router&apos;</span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line">const router = new Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: &apos;/&apos;,</span><br><span class="line">      component: () =&gt; import(&quot;xxx&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、-样式污染和样式覆盖的问题"><a href="#五、-样式污染和样式覆盖的问题" class="headerlink" title="五、 样式污染和样式覆盖的问题"></a>五、 样式污染和样式覆盖的问题</h2><p>在我们新建vue的时候，经常会看到<code>scoped</code> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;style scoped&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果我们去掉scoped的时候会发现，在本vue项目内定义的css属性会影响到其他vue页面的css属性。这个就很坑了。所以，我们在使用的时候一定要用scoped 但是在实际的开发中，也会遇到这么个问题。比如elementUI](<a href="http://element-cn.eleme.io/#/zh-CN/component/changelog)，虽然里面的资源库很强大，但是里面的视图不能完全符合策划的需求，此时就需要进行微调。" target="_blank" rel="noopener">http://element-cn.eleme.io/#/zh-CN/component/changelog)，虽然里面的资源库很强大，但是里面的视图不能完全符合策划的需求，此时就需要进行微调。</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;style lang=&quot;stylus&quot; scoped&gt;</span><br><span class="line">  .custom-dialog</span><br><span class="line">    .el-dialog__header</span><br><span class="line">      padding 0</span><br><span class="line">    .el-dialog__body</span><br><span class="line">      padding 0</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p> 如果此时我们加上scoped标签的话，我们发现并没有效果，发现去掉scoped才会起作用。</p>
+<h2 id="六、-mock、mock"><a href="#六、-mock、mock" class="headerlink" title="六、 mock、mock"></a>六、 mock、mock</h2><p>很多情况下，后台还没有搭建完成之前。可能前端没办法进行数据的接入。这种情况可能是一个大问题，这样会严重拖慢项目开发，此时就需要mock 首先在webpack.dev.conf.js里面配置express</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const express = require(&apos;express&apos;)</span><br><span class="line">const app = express()</span><br><span class="line">const appData = require(&apos;../static/data/user.json&apos;)</span><br><span class="line">const apiRouter = express.Router()</span><br><span class="line">app.use(&apos;/api&apos;,apiRouter)</span><br></pre></td></tr></table></figure>
+
+<p>然后将接口通过<code>devServer</code>发布出去: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> before(app) &#123;</span><br><span class="line">  app.get(&apos;/api/user&apos;,(req, res) =&gt; &#123;</span><br><span class="line">    res.json(&#123;</span><br><span class="line">      data: appData</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用的时候就直接打开<a href="http://localhost:8080/api/user,就可以了。" target="_blank" rel="noopener">http://localhost:8080/api/user,就可以了。</a></p>
+<h2 id="七、-代理解决跨域"><a href="#七、-代理解决跨域" class="headerlink" title="七、 代理解决跨域"></a>七、 代理解决跨域</h2><p>有些时候，在进行本地开发的时候，可能会遇到跨域的问题。为了解决这个问题呢？主要有两种方法： 1、 服务器设置 服务端设置很简单，就是将本地开发的东西加上“Access-Control-Allow-Origin”, “*”,或者是直接将本地开发的ip直接设置成白名单，这样就可以了. 2、 本地代理 </p>
+<p>首先引入  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install http-proxy-middleware --save</span><br></pre></td></tr></table></figure>
+
+<p>然后在<code>index.js</code>的标签下<code>proxyTable</code>使用 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&apos;/lesson&apos;: &#123;</span><br><span class="line">        target: &apos;http://xxx/v2/webapi/lesson&apos;, // 代理的网址</span><br><span class="line">        changeOrigin: true, // 允许跨域</span><br><span class="line">        pathRewrite: &#123;</span><br><span class="line">         &apos;^/lesson&apos;: &apos;/&apos;</span><br><span class="line">       &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用的时候，就直接使用 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">axios(&#123;</span><br><span class="line">       method: &apos;get&apos;,</span><br><span class="line">       url:&apos;/lesson&apos; ,</span><br><span class="line">       params: qs.stringify(data)</span><br><span class="line">     &#125;).then(function (res) &#123;</span><br><span class="line">       if (res) &#123;</span><br><span class="line">         //...</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;);</span><br><span class="line">   &#125;).catch(function (error) &#123;</span><br><span class="line">     console.error(error);</span><br><span class="line">   &#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="八、-页面统一判断"><a href="#八、-页面统一判断" class="headerlink" title="八、 页面统一判断"></a>八、 页面统一判断</h2><p>在开发中经常会遇到权限判断的问题，我们又不可能在每一个页面的生命周期中去判断一下，可以这样处理：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach((to, from, next) =&gt; &#123;</span><br><span class="line">  myAccess.checkhaveAccess(to.path) === true ? next() : next(&apos;/forbid&apos;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="九、-事件的传递："><a href="#九、-事件的传递：" class="headerlink" title="九、 事件的传递："></a>九、 事件的传递：</h2><p>一般来说事件的传递有很多种，比如父子之间传递数据就可以直接用props，和emit来做关联。</p>
+<p>父组件给子组件传递  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 父组件</span><br><span class="line">&lt;parent&gt;</span><br><span class="line">    &lt;child :datas=&quot;content&quot;&gt;&lt;/child&gt; </span><br><span class="line">&lt;/parent&gt;</span><br><span class="line"></span><br><span class="line">data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        content:&apos;sichaoyun&apos;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 子组件</span><br><span class="line"></span><br><span class="line">props:[&quot;datas&quot;];</span><br><span class="line">// 或者是 </span><br><span class="line">props: &#123;</span><br><span class="line"> datas: String</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>子组件给父组件传递 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 子组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div @click=&quot;open&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">methods: &#123;</span><br><span class="line">   open() &#123;</span><br><span class="line">        this.$emit(&apos;showbox&apos;,&apos;the msg&apos;); //触发showbox方法，&apos;the msg&apos;为向父组件传递的数据</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 父组件</span><br><span class="line">&lt;child @showbox=&quot;toshow&quot; :msg=&quot;msg&quot;&gt;&lt;/child&gt; //监听子组件触发的showbox事件,然后调用toshow方法</span><br><span class="line"></span><br><span class="line">methods: &#123;</span><br><span class="line">    toshow(msg) &#123;</span><br><span class="line">        this.msg = msg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>兄弟组件之间的传递一般有几种方式： 1、 注册全局事件 2、 vuex 3、 localstorage </p>
+<p>使用全局事件则代码如下： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">let vm = new Vue(); //创建实例</span><br><span class="line"></span><br><span class="line">&lt;div @click=&quot;ge&quot;&gt;&lt;/div&gt;</span><br><span class="line">methods: &#123;</span><br><span class="line">    ge() &#123;</span><br><span class="line">        vm.$emit(&apos;click&apos;,data); //触发事件</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;&lt;/div&gt;</span><br><span class="line">created() &#123;</span><br><span class="line">  vm.$on(&apos;click&apos;, (arg) =&gt; &#123; </span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="十、-列表渲染"><a href="#十、-列表渲染" class="headerlink" title="十、 列表渲染"></a>十、 列表渲染</h2><h3 id="v-for循环绑定model"><a href="#v-for循环绑定model" class="headerlink" title="v-for循环绑定model:"></a>v-for循环绑定model:</h3><p>这个是我在一个微信公众号上面看到的写法，很新颖: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 数据    </span><br><span class="line">     data() &#123;</span><br><span class="line">         return&#123;</span><br><span class="line">          obj: &#123;</span><br><span class="line">             ob: &quot;OB&quot;,</span><br><span class="line">             koro1: &quot;Koro1&quot;</span><br><span class="line">           &#125;,</span><br><span class="line">           model: &#123;</span><br><span class="line">             ob: &quot;默认ob&quot;,</span><br><span class="line">             koro1: &quot;默认koro1&quot;</span><br><span class="line">           &#125;   </span><br><span class="line">         &#125;</span><br><span class="line">     &#125;,</span><br><span class="line">   // html模板</span><br><span class="line">   &lt;div v-for=&quot;(value,key) in obj&quot;&gt;</span><br><span class="line">      &lt;input type=&quot;text&quot; v-model=&quot;model[key]&quot;&gt;</span><br><span class="line">   &lt;/div&gt;</span><br><span class="line">     // input就跟数据绑定在一起了，那两个默认数据也会在input中显示</span><br></pre></td></tr></table></figure>
+
+<h3 id="v-if尽量不要与v-for在同一节点使用"><a href="#v-if尽量不要与v-for在同一节点使用" class="headerlink" title="v-if尽量不要与v-for在同一节点使用:"></a>v-if尽量不要与v-for在同一节点使用:</h3><p>v-for 的优先级比 v-if 更高,如果它们处于同一节点的话，那么每一个循环都会运行一遍v-if。</p>
+<p> 如果想根据循环中的每一项的数据来判断是否渲染，可以这么做: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;li v-for=&quot;index in datas&quot; v-if=&quot;Object.is(index,0)&quot;&gt;</span><br><span class="line">  &#123;&#123; index &#125;&#125;</span><br><span class="line">&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果你想要根据某些条件跳过循环，而又跟将要渲染的每一项数据没有关系的话，可以将v-if放在v-for的父节点： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 根据elseData是否为true 来判断是否渲染，跟每个元素没有关系    </span><br><span class="line">    &lt;ul v-if=&quot;condition&quot;&gt;</span><br><span class="line">     &lt;li v-for=&quot;index in datas&quot;&gt;</span><br><span class="line">       &#123;&#123; index &#125;&#125;</span><br><span class="line">     &lt;/li&gt;</span><br><span class="line">   &lt;/ul&gt;</span><br><span class="line">   // 数组是否有数据 跟每个元素没有关系</span><br><span class="line">   &lt;ul v-if=&quot;datas.length&quot;&gt;</span><br><span class="line">     &lt;li v-for=&quot;index in datas&quot;&gt;</span><br><span class="line">       &#123;&#123; index &#125;&#125;</span><br><span class="line">     &lt;/li&gt;</span><br><span class="line">   &lt;/ul&gt;</span><br><span class="line">     &lt;p v-else&gt;没有更多数据&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="十一、-深度watch与watch立即触发回调"><a href="#十一、-深度watch与watch立即触发回调" class="headerlink" title="十一、 深度watch与watch立即触发回调"></a>十一、 深度watch与watch立即触发回调</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">watch有两个可选参数</span><br><span class="line">选项：deep</span><br><span class="line">在选项参数中指定 deep: true，可以监听对象中属性的变化。</span><br><span class="line">选项：immediate</span><br><span class="line">在选项参数中指定 immediate: true, 将立即以表达式的当前值触发回调，也就是默认触发一次。</span><br></pre></td></tr></table></figure>
+
+<h2 id="十二、-路由的项目启动页和404页面"><a href="#十二、-路由的项目启动页和404页面" class="headerlink" title="十二、 路由的项目启动页和404页面"></a>十二、 路由的项目启动页和404页面</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">export default new Router(&#123;</span><br><span class="line">    routes: [</span><br><span class="line">      &#123;</span><br><span class="line">        path: &apos;/&apos;, // 项目启动页</span><br><span class="line">        redirect:&apos;/login&apos;  // 重定向到下方声明的路由 </span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        path: &apos;*&apos;, // 404 页面 </span><br><span class="line">        component: () =&gt; import(&apos;./notfind&apos;)</span><br><span class="line">      &#125;,</span><br><span class="line">    ]</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>比如你的域名为:<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 项目启动页指的是: 当你进入<a href="http://www.baidu.com，会自动跳转到login登录页。" target="_blank" rel="noopener">www.baidu.com，会自动跳转到login登录页。</a> 404页面指的是: 当进入一个没有 声明/没有匹配 的路由页面时就会跳转到404页面。 比如进入<a href="http://www.baidu.com/testRouter,就会自动跳转到notFind页面。" target="_blank" rel="noopener">www.baidu.com/testRouter,就会自动跳转到notFind页面。</a> 当你没有声明一个404页面，进入<a href="http://www.baidu.com/testRouter，显示的页面是一片空白。" target="_blank" rel="noopener">www.baidu.com/testRouter，显示的页面是一片空白。</a> </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/05/请求方法的理解/" rel="next" title="请求方法的理解">
+                <i class="fa fa-chevron-left"></i> 请求方法的理解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/08/搭建腾讯云https网络服务器/" rel="prev" title="搭建腾讯云https网络服务器">
+                搭建腾讯云https网络服务器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、-js适配经验："><span class="nav-number">1.</span> <span class="nav-text">一、 js适配经验：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、-全局定义"><span class="nav-number">2.</span> <span class="nav-text">二、 全局定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、-自定义目录"><span class="nav-number">3.</span> <span class="nav-text">三、 自定义目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、-路由懒加载"><span class="nav-number">4.</span> <span class="nav-text">四、 路由懒加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、-样式污染和样式覆盖的问题"><span class="nav-number">5.</span> <span class="nav-text">五、 样式污染和样式覆盖的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、-mock、mock"><span class="nav-number">6.</span> <span class="nav-text">六、 mock、mock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、-代理解决跨域"><span class="nav-number">7.</span> <span class="nav-text">七、 代理解决跨域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、-页面统一判断"><span class="nav-number">8.</span> <span class="nav-text">八、 页面统一判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#九、-事件的传递："><span class="nav-number">9.</span> <span class="nav-text">九、 事件的传递：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十、-列表渲染"><span class="nav-number">10.</span> <span class="nav-text">十、 列表渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#v-for循环绑定model"><span class="nav-number">10.1.</span> <span class="nav-text">v-for循环绑定model:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-if尽量不要与v-for在同一节点使用"><span class="nav-number">10.2.</span> <span class="nav-text">v-if尽量不要与v-for在同一节点使用:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十一、-深度watch与watch立即触发回调"><span class="nav-number">11.</span> <span class="nav-text">十一、 深度watch与watch立即触发回调</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十二、-路由的项目启动页和404页面"><span class="nav-number">12.</span> <span class="nav-text">十二、 路由的项目启动页和404页面</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
