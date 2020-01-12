@@ -86,13 +86,13 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="简述Js中的原型与原型链1、原型Javascript是基于对象的编程语言，他其中也含有部分封装、继承的概念，而原型概念便是基于继承的。  函数的原型类似于面向对象语言中子类的父类，而函数本身类似于子类。函数继承了函数原型中的属性和方法，即函数本身可以调用它原型中的属性和方法。  知识点：若有函数Person，则它的函数原型为Person.prototype，函数原型本身是个对象。 12  在上面的">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/.com//%E4%B8%89%E8%80%85%E5%85%B3%E7%B3%BB.png">
-<meta property="og:image" content="http://yoursite.com/.com//%E5%8E%9F%E5%9E%8B%E9%93%BE.png">
-<meta property="og:updated_time" content="2020-01-12T10:58:25.442Z">
+<meta property="og:image" content="http://yoursite.com/2019/07/22/简述Js原型/%E4%B8%89%E8%80%85%E5%85%B3%E7%B3%BB.png">
+<meta property="og:image" content="http://yoursite.com/2019/07/22/简述Js原型/%E5%8E%9F%E5%9E%8B%E9%93%BE.png">
+<meta property="og:updated_time" content="2020-01-12T11:08:29.845Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简述Js原型">
 <meta name="twitter:description" content="简述Js中的原型与原型链1、原型Javascript是基于对象的编程语言，他其中也含有部分封装、继承的概念，而原型概念便是基于继承的。  函数的原型类似于面向对象语言中子类的父类，而函数本身类似于子类。函数继承了函数原型中的属性和方法，即函数本身可以调用它原型中的属性和方法。  知识点：若有函数Person，则它的函数原型为Person.prototype，函数原型本身是个对象。 12  在上面的">
-<meta name="twitter:image" content="http://yoursite.com/.com//%E4%B8%89%E8%80%85%E5%85%B3%E7%B3%BB.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/07/22/简述Js原型/%E4%B8%89%E8%80%85%E5%85%B3%E7%B3%BB.png">
 
 
 
@@ -308,7 +308,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>在上面的例子中涉及到了 构造函数、对象和函数原型，接下来给出三者之间的关系图； </p>
-<h2 id="2、构造函数、实例、原型三者之间的关系"><a href="#2、构造函数、实例、原型三者之间的关系" class="headerlink" title="2、构造函数、实例、原型三者之间的关系"></a>2、构造函数、实例、原型三者之间的关系</h2><p><img src="/.com//%E4%B8%89%E8%80%85%E5%85%B3%E7%B3%BB.png" alt="三者关系"></p>
+<h2 id="2、构造函数、实例、原型三者之间的关系"><a href="#2、构造函数、实例、原型三者之间的关系" class="headerlink" title="2、构造函数、实例、原型三者之间的关系"></a>2、构造函数、实例、原型三者之间的关系</h2><p><img src="//yoursite.com/2019/07/22/简述Js原型/%E4%B8%89%E8%80%85%E5%85%B3%E7%B3%BB.png" alt="三者关系"></p>
 <p>由图中我们可以很直观的看到三者之间的关系。</p>
 <p>p对象由Person构造函数构造</p>
 <p>p对象通过<strong>proto</strong>属性访问到Person对象原型</p>
@@ -322,7 +322,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>知道以上的知识之后，我们还要了解，其实Person的原型也有原型，即存在Person.prototype.prototype，并且它是Person.prototype的原型，可以用图来直观了解这其中的关系，这便是一个简单的原型链。 </p>
-<h2 id="3、原型链"><a href="#3、原型链" class="headerlink" title="3、原型链"></a>3、原型链</h2><p>​     <img src="/.com//%E5%8E%9F%E5%9E%8B%E9%93%BE.png" alt="原型链"></p>
+<h2 id="3、原型链"><a href="#3、原型链" class="headerlink" title="3、原型链"></a>3、原型链</h2><p>​     <img src="//yoursite.com/2019/07/22/简述Js原型/%E5%8E%9F%E5%9E%8B%E9%93%BE.png" alt="原型链"></p>
+<p>% asset_img 三者关系.png This is an test image %</p>
 <h2 id="4、原型链中的搜索规则"><a href="#4、原型链中的搜索规则" class="headerlink" title="4、原型链中的搜索规则"></a>4、原型链中的搜索规则</h2><p>了解了 <strong>构造函数-实例-原型对象</strong> 三者之间的关系后，接下来我们来解释一下为什么实例对象可以访问原型对象中的成员。</p>
 <p>每当代码读取某个对象的某个属性时，都会执行一次搜索，目标是具有给定名字的属性</p>
 <ul>
